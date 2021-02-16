@@ -6,12 +6,12 @@ public class TrapTrigger : MonoBehaviour
 {
     public Animator anim;
     private Shooting shooting;
-    private bool isShooting;
+    public GameObject firePoint;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        isShooting = false;
+        shooting = firePoint.GetComponent<Shooting>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,8 +21,10 @@ public class TrapTrigger : MonoBehaviour
 
         if (gameObject.tag == "Arrows")
         {
-            isShooting = true;
-            anim.SetBool("playertouch" ,true);
+            
+
+            shooting.Shoot();
+            anim.SetBool("playertouch", true);
         }
     }
 
@@ -33,7 +35,7 @@ public class TrapTrigger : MonoBehaviour
 
         if (gameObject.tag == "Arrows")
         {
-            isShooting = false;
+            
             anim.SetBool("playertouch", false);
         }
     }
